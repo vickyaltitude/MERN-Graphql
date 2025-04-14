@@ -3,21 +3,21 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 const users = [
   {
-    id: 1,
+    id: "1",
     name: "vignesh",
     email: "vignesh@yopmail.com",
     age: 25,
     isMarried: false,
   },
   {
-    id: 2,
+    id: "2",
     name: "prem",
     email: "prem@yopmail.com",
     age: 28,
     isMarried: true,
   },
   {
-    id: 1,
+    id: "3",
     name: "senthil",
     email: "senthil@yopmail.com",
     age: 32,
@@ -50,12 +50,12 @@ const resolvers = {
       return users;
     },
     getUserById: (parent, args) => {
-      return users.filter((user) => user.id === args.id);
+      return users.find((user) => user.id === args.id);
     },
   },
   Mutation: {
     createNewUser: (parent, args) => {
-      const newUser = { ...args, id: users.length + 1 };
+      const newUser = { ...args, id: String(users.length + 1) };
       users.push(newUser);
       return newUser;
     },
